@@ -26,6 +26,6 @@ public class Raiz {
 	private String descricao;
 	@OneToOne(targetEntity = Classe.class)
 	@JoinColumn(name = "classe_id")
-	private Classe classe_id;
+	private Classe classeId;
 	private Boolean ativo;
 }

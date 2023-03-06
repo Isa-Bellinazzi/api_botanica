@@ -13,7 +13,7 @@ public record DadosDetalhamentoFilo(
         ) {
 
 	public DadosDetalhamentoFilo(Filo filo) {
-		this(filo.getId(), filo.getDescricao(), filo.getFolhas_verdadeiras(), filo.getCaule_verdadeiro(),
-				filo.getRaiz_verdadeiras(), filo.getFrutos(), filo.getFlores(),filo.getSementes());
+		this(filo.getId(), filo.getDescricao(), filo.getFolhasVerdadeiras(), filo.getCauleVerdadeiro(),
+				filo.getFolhasVerdadeiras(), filo.getFrutos(), filo.getFlores(),filo.getSementes());
 	}
 }

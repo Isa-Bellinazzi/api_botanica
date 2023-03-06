@@ -11,17 +11,17 @@ public record DadosAtualizacaoPlanta(
 		@NotBlank		
 		String cor,
 		@NotNull
-		Long filo_id,
+		Long filoId,
 		@NotNull
-		Long classe_id,
+		Long classeId,
 		@NotNull
-		Long ordem_id,
+		Long ordemId,
 		@NotNull
-		Long raiz_id,
+		Long raizId,
 		@NotNull
-		Long caule_id,
+		Long cauleId,
 		@NotNull
-		Long folhagem_id
+		Long folhagemId
 ) {
 
 }

@@ -23,9 +23,9 @@ public record DadosDetalhamentoPlanta(
 {
 
 	public DadosDetalhamentoPlanta(Planta planta) {
-		this(planta.getId(), planta.getNome(), planta.getCor(), planta.getId_filo().getId(), planta.getClasse_id().getId(),
-				planta.getOrdem_id().getId(), planta.getRaiz_id().getId(), planta.getCaule_id().getId(),
-				planta.getFolhagem_id().getId(), planta.getAtivo());
+		this(planta.getId(), planta.getNome(), planta.getCor(), planta.getIdFilo().getId(), planta.getClasseId().getId(),
+				planta.getOrdemId().getId(), planta.getRaizId().getId(), planta.getCauleId().getId(),
+				planta.getFolhagemId().getId(), planta.getAtivo());
 	}
 
 	

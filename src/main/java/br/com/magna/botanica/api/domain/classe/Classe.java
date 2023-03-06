@@ -26,6 +26,6 @@ public class Classe {
 	private String descricao;
 	@OneToOne(targetEntity = Filo.class)
 	@JoinColumn(name = "id_filo")
-	private Filo id_filo;
+	private Filo idFilo;
 	private Boolean ativo;
 }

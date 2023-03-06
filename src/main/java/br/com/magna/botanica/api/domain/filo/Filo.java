@@ -23,9 +23,9 @@ public  class Filo{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	private Boolean folhas_verdadeiras;
-	private Boolean caule_verdadeiro;
-	private Boolean raiz_verdadeiras;
+	private Boolean folhasVerdadeiras;
+	private Boolean cauleVerdadeiro;
+	private Boolean raizVerdadeiras;
 	private Boolean frutos;
 	private Boolean flores;
 	private Boolean ativo;

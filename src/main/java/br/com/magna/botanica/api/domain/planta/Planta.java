@@ -36,22 +36,22 @@ public class Planta {
 	private String cor;
 	@OneToOne(targetEntity = Filo.class)
 	@JoinColumn(name = "filo_id")
-	private Filo id_filo;
+	private Filo idFilo;
 	@OneToOne(targetEntity = Classe.class)
 	@JoinColumn(name = "classe_id")
-	private Classe classe_id;
+	private Classe classeId;
 	@OneToOne(targetEntity = Ordem.class)
 	@JoinColumn(name = "ordem_id")
-	private Ordem ordem_id;
+	private Ordem ordemId;
 	@OneToOne(targetEntity = Raiz.class)
 	@JoinColumn(name = "raiz_id")
-	private Raiz raiz_id;
+	private Raiz raizId;
 	@OneToOne(targetEntity = Caule.class)
 	@JoinColumn(name = "caule_id")
-	private Caule caule_id;
+	private Caule cauleId;
 	@OneToOne(targetEntity = Folhagem.class)
 	@JoinColumn(name = "folhagem_id")
-	private Folhagem folhagem_id;
+	private Folhagem folhagemId;
 	private Boolean ativo;
 
 	public void excluir() {
@@ -66,12 +66,12 @@ public class Planta {
 			Folhagem folhagem) {
 		this.nome = nome;
 		this.cor = cor;
-		this.id_filo = filo;
-		this.classe_id = classe;
-		this.ordem_id = ordem;
-		this.raiz_id = raiz;
-		this.caule_id = caule;
-		this.folhagem_id = folhagem;
+		this.idFilo = filo;
+		this.classeId = classe;
+		this.ordemId = ordem;
+		this.raizId = raiz;
+		this.cauleId = caule;
+		this.folhagemId = folhagem;
 		this.ativo = true;
 	}
 
@@ -81,12 +81,12 @@ public class Planta {
 		this.id = id;
 		this.nome = nome;
 		this.cor = cor;
-		this.id_filo = filo;
-		this.classe_id = classe;
-		this.ordem_id = ordem;
-		this.raiz_id = raiz;
-		this.caule_id = caule;
-		this.folhagem_id = folhagem;
+		this.idFilo = filo;
+		this.classeId = classe;
+		this.ordemId = ordem;
+		this.raizId = raiz;
+		this.cauleId = caule;
+		this.folhagemId = folhagem;
 		this.ativo = true;
 	}
 }
