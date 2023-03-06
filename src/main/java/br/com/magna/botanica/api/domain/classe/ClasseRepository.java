@@ -9,11 +9,11 @@ public interface ClasseRepository extends JpaRepository<Classe, Long>{
 
 	Page<Classe> findAllByAtivoTrue(Pageable paginacao);
 
-	@Query("""
+	/*@Query("""
 			SELECT C FROM CLASSES C
 			WHERE
 			""")
-	Classe validandoClasseComFilo(Long classe_id, Long filo_id);
+	Classe validandoClasseComFilo(Long classe_id, Long filo_id);*/
 
 
 }

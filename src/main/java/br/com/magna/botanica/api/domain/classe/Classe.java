@@ -1,8 +1,11 @@
 package br.com.magna.botanica.api.domain.classe;
+import br.com.magna.botanica.api.domain.filo.Filo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,6 +24,8 @@ public class Classe {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	private Long id_filo;
+	@OneToOne(targetEntity = Filo.class)
+	@JoinColumn(name = "id_filo")
+	private Filo id_filo;
 	private Boolean ativo;
 }

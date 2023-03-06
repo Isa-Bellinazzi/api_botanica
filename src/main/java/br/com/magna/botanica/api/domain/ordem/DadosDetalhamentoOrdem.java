@@ -8,6 +8,6 @@ public record DadosDetalhamentoOrdem(
         ) {
 
 	public DadosDetalhamentoOrdem(Ordem ordem) {
-		this(ordem.getId(), ordem.getDescricao(), ordem.getClasse_id(),ordem.getAtivo());
+		this(ordem.getId(), ordem.getDescricao(), ordem.getClasse_id().getId(),ordem.getAtivo());
 	}
 }

@@ -9,6 +9,6 @@ public record DadosDetalhamentoClasse(
         ) {
 
 	public DadosDetalhamentoClasse(Classe classe) {
-		this(classe.getId(), classe.getDescricao(), classe.getId_filo(),classe.getAtivo());
+		this(classe.getId(), classe.getDescricao(), classe.getId_filo().getId(),classe.getAtivo());
 	}
 }

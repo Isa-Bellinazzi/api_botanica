@@ -36,20 +36,13 @@ public class PlantaController {
 
 	@PostMapping
 	@Transactional // METODO DE CADASTRO
-	/*
-	 * public ResponseEntity cadastrar(@RequestBody @Validated DadosCadastroPlanta
-	 * dados, UriComponentsBuilder uriBuilder) { var planta =
-	 * plantaService.cadastrar(dados); var uri =
-	 * uriBuilder.path("/planta/{id}").buildAndExpand(planta.getId()).toUri();
-	 * return
-	 * ResponseEntity.created(uri).body(plantaService.detalhar(planta.getId())); }
-	 */
-	public ResponseEntity cadastrar(@RequestBody @Validated DadosCadastroPlanta dados, UriComponentsBuilder uriBuilder) {
-		var planta = new Planta(dados);
-		repository.save(planta);
-		var uri = uriBuilder.path("/planta/{id}").buildAndExpand(planta.getId()).toUri();
-		return ResponseEntity.created(uri).body(new DadosDetalhamentoPlanta(planta));
-	}
+	
+	 public ResponseEntity cadastrar(@RequestBody @Validated DadosCadastroPlanta
+	 dados, UriComponentsBuilder uriBuilder) { var planta =
+	 plantaService.cadastrar(dados); var uri =
+	 uriBuilder.path("/planta/{id}").buildAndExpand(planta.getId()).toUri();
+	 return ResponseEntity.created(uri).body(plantaService.detalhar(planta.getId())); }
+
 	@GetMapping // METODO DE LISTAGEM
 	public ResponseEntity<Page<DadosListagemPlanta>> listar(
 			@PageableDefault(size = 7, sort = { "nome" }) Pageable paginacao) {

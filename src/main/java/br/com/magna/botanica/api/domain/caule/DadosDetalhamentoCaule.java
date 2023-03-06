@@ -8,6 +8,6 @@ public record DadosDetalhamentoCaule(
         ) {
 
 	public DadosDetalhamentoCaule(Caule caule) {
-		this(caule.getId(), caule.getDescricao(), caule.getClasse_id(),caule.getAtivo());
+		this(caule.getId(), caule.getDescricao(), caule.getClasse_id().getId(),caule.getAtivo());
 	}
 }

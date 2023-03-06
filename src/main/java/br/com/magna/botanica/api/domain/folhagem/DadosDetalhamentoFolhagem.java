@@ -9,6 +9,6 @@ public record DadosDetalhamentoFolhagem(
         ) {
 
 	public DadosDetalhamentoFolhagem(Folhagem folha) {
-		this(folha.getId(), folha.getDescricao(),folha.getClasse_id(),folha.getAtivo());
+		this(folha.getId(), folha.getDescricao(),folha.getClasse_id().getId(),folha.getAtivo());
 	}
 }

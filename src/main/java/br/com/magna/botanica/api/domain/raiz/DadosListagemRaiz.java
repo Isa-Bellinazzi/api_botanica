@@ -8,6 +8,6 @@ public record DadosListagemRaiz(
          ) {
 
 	public DadosListagemRaiz(Raiz raiz) {
-		this(raiz.getId(), raiz.getDescricao(), raiz.getClasse_id(), raiz.getAtivo());
+		this(raiz.getId(), raiz.getDescricao(), raiz.getClasse_id().getId(), raiz.getAtivo());
 }
 }
