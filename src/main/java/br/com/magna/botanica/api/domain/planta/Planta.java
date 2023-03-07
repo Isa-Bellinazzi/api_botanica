@@ -59,7 +59,7 @@ public class Planta {
 	}
 
 	public Boolean getAtivo() {
-		return ativo;
+	 	return ativo;
 	}
 
 	public Planta(String nome, String cor, Filo filo, Classe classe, Ordem ordem, Raiz raiz, Caule caule,

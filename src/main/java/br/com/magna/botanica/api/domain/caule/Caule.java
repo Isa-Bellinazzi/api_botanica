@@ -1,6 +1,5 @@
 package br.com.magna.botanica.api.domain.caule;
 import br.com.magna.botanica.api.domain.classe.Classe;
-import br.com.magna.botanica.api.domain.filo.Filo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,10 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "caules")
 @Entity(name = "Caule")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
