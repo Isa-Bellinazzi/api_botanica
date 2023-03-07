@@ -35,8 +35,7 @@ public class PlantaController {
 	private PlantaService plantaService;
 
 	@PostMapping
-	@Transactional // METODO DE CADASTRO
-	
+	@Transactional // METODO DE CADASTRO	
 	 public ResponseEntity cadastrar(@RequestBody @Validated DadosCadastroPlanta
 	 dados, UriComponentsBuilder uriBuilder) { var planta =
 	 plantaService.cadastrar(dados); var uri =
@@ -53,30 +52,17 @@ public class PlantaController {
 	@Transactional // METODO DE ATUALIZAÇÃO
 	public ResponseEntity atualizar(@RequestBody @Validated DadosAtualizacaoPlanta dados) {
 		return ResponseEntity.ok(plantaService.atualizar(dados));
-
 	}
-
-	/*
-	 * @DeleteMapping("/{id}")
-	 * 
-	 * @Transactional // EXCLUSAO FISICA public ResponseEntity excluir(@PathVariable
-	 * Long id){ repository.deleteById(id); return
-	 * ResponseEntity.noContent().build();
-	 * 
-	 * }
-	 */
-
+	
 	@DeleteMapping("/{id}")
 	@Transactional // EXCLUSAO LOGICA
 	public ResponseEntity excluir(@PathVariable Long id) {
 		plantaService.excluir(id);
 		return ResponseEntity.noContent().build();
-
 	}
 
 	@GetMapping("/{id}") // Detalhamento de planta
 	public ResponseEntity detalhar(@PathVariable Long id) {
 		return ResponseEntity.ok(plantaService.detalhar(id));
-
 	}
 }

@@ -5,110 +5,57 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.magna.botanica.api.domain.ValidacaoException;
-import br.com.magna.botanica.api.domain.caule.CauleRepository;
-import br.com.magna.botanica.api.domain.classe.Classe;
-import br.com.magna.botanica.api.domain.classe.ClasseRepository;
+import br.com.magna.botanica.api.domain.caule.CauleService;
+import br.com.magna.botanica.api.domain.classe.ClasseService;
 import br.com.magna.botanica.api.domain.filo.FiloRepository;
-import br.com.magna.botanica.api.domain.folhagem.FolhagemRepository;
-import br.com.magna.botanica.api.domain.ordem.OrdemRepository;
-import br.com.magna.botanica.api.domain.raiz.RaizRepository;
+import br.com.magna.botanica.api.domain.folhagem.FolhagemService;
+import br.com.magna.botanica.api.domain.ordem.OrdemService;
+import br.com.magna.botanica.api.domain.raiz.RaizService;
 
 @Service
 public class PlantaService {
 	@Autowired
-	private FiloRepository filoRepository;
-	
-	@Autowired
-	private ClasseRepository classeRepository;
-	
-	@Autowired
-	private OrdemRepository ordemRepository;
-	
-	@Autowired
-	private RaizRepository raizRepository;
-	
-	@Autowired
-	private CauleRepository cauleRepository;
-	
-	@Autowired
-	private FolhagemRepository folhaRepository;
-
-	@Autowired
 	private PlantaRepository repository;
-	 
+	@Autowired
+	private FiloRepository filoRepository;	
+	@Autowired
+	private ClasseService classeService;
+	@Autowired
+	private OrdemService ordemService;
+	@Autowired
+	private RaizService raizService;
+	@Autowired
+	private CauleService cauleService;
+	@Autowired
+	private FolhagemService folhagemService;
 	
 	public Planta cadastrar(DadosCadastroPlanta dados) {
-		if(! classeRepository.existsById(dados.classeId())){
-			throw new ValidacaoException("Id inserido em classe é invalido");
-		}
-		if(! filoRepository.existsById(dados.filoId())) {
-			throw new ValidacaoException("Id inserido em filo é invalido");
-		}
-		if(dados.ordemId() != null && ! ordemRepository.existsById(dados.ordemId())) {
-			throw new ValidacaoException("Id inserido em ordem é invalido");
-		}
-		if(! raizRepository.existsById(dados.raizId())) {
-			throw new ValidacaoException("Id inserido em raiz é invalido");
-		}
-		if(! cauleRepository.existsById(dados.cauleId())) {
-			throw new ValidacaoException("Id inserido em caule é invalido");
-		}
-		if(! folhaRepository.existsById(dados.folhagemId())) {
-			throw new ValidacaoException("Id inserido em folha é invalido");
-		}
        var filo = filoRepository.getReferenceById(dados.filoId());
-       var classe = validandoDadosDeClasse(dados);
-       //var classe = classeRepository.getReferenceById(dados.classeId());
-       var ordem = ordemRepository.getReferenceById(dados.ordemId());
-       var raiz = raizRepository.getReferenceById(dados.raizId());
-	   var caule = cauleRepository.getReferenceById(dados.cauleId());
-	   var folhagem = folhaRepository.getReferenceById(dados.folhagemId());
-		
-		var planta = new Planta(dados.nome(),dados.cor(), filo,classe, ordem, raiz, caule, folhagem);
-		repository.save(planta);
-
-		return planta;
+       var classe = classeService.valiadandoDadosDeClasse(dados);
+       var ordem = ordemService.validandoDadosDeOrdem(dados);
+       var raiz = raizService.validandoDadosDeRaiz(dados);
+	   var caule = cauleService.validandoDadosDeCaule(dados);
+	   var folhagem = folhagemService.validandoDadosDeFolhagem(dados);;
+	   var planta = new Planta(dados.nome(),dados.cor(), filo,classe, 
+	   ordem, raiz, caule, folhagem);
+	   repository.save(planta);
+	   return planta;
 	}
-
-	private Classe validandoDadosDeClasse(DadosCadastroPlanta dados) {
-		
-		return classeRepository.validandoClasseComFilo(dados.classeId(),dados.filoId());
-	}
-
-
 
 	public DadosDetalhamentoPlanta atualizar(DadosAtualizacaoPlanta dados) {
-		if(! classeRepository.existsById(dados.classeId())){
-			throw new ValidacaoException("Id inserido em classe é invalido");
-		}
-		if(! filoRepository.existsById(dados.filoId())) {
-			throw new ValidacaoException("Id inserido em filo é invalido");
-		}
-		if(dados.ordemId() != null && ! ordemRepository.existsById(dados.ordemId())) {
-			throw new ValidacaoException("Id inserido em ordem é invalido");
-		}
-		if(! raizRepository.existsById(dados.raizId())) {
-			throw new ValidacaoException("Id inserido em raiz é invalido");
-		}
-		if(! cauleRepository.existsById(dados.cauleId())) {
-			throw new ValidacaoException("Id inserido em caule é invalido");
-		}
-		if(! folhaRepository.existsById(dados.folhagemId())) {
-			throw new ValidacaoException("Id inserido em folha é invalido");
-		}
-       var filo = filoRepository.getReferenceById(dados.filoId());
-       var classe = classeRepository.getReferenceById(dados.classeId());
-       var ordem = ordemRepository.getReferenceById(dados.ordemId());
-       var raiz = raizRepository.getReferenceById(dados.raizId());
-	   var caule = cauleRepository.getReferenceById(dados.cauleId());
-	   var folhagem = folhaRepository.getReferenceById(dados.folhagemId());
+		var filo = filoRepository.getReferenceById(dados.filoId());
+	    var classe = classeService.valiadandoDadosAtuliazacaoClasse(dados);
+	    var ordem = ordemService.validandoDadosAtualizacaoOrdem(dados);
+	    var raiz = raizService.validandoDadosRaizAtualizacao(dados);
+		var caule = cauleService.validandoDadosCauleAtualizacao(dados);
+		var folhagem = folhagemService.validandoDadosFolhagemAtualizacao(dados);;
 		var planta = repository.getReferenceById(dados.id());
-		planta.atualizarInformacoes(dados.id(),dados.nome(),dados.cor(), filo,classe, ordem, raiz, caule, folhagem);
+		planta.atualizarInformacoes(dados.id(),dados.nome(),dados.cor(),
+		filo,classe, ordem, raiz, caule, folhagem);
 		repository.save(planta);
 		return new DadosDetalhamentoPlanta(planta);
 	}
-
+	
 	public DadosDetalhamentoPlanta detalhar(Long id) {
 		var planta = repository.getReferenceById(id);  
 		return new DadosDetalhamentoPlanta(planta);

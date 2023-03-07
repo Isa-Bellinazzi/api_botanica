@@ -5,17 +5,27 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.magna.botanica.api.domain.planta.DadosAtualizacaoPlanta;
+import br.com.magna.botanica.api.domain.planta.DadosCadastroPlanta;
+
 @Service
 public class CauleService {
+
 	@Autowired
-	private CauleRepository repository;
+	private CauleRepository cauleRepository;
 	public DadosDetalhamentoCaule detalhar(Long id) {
-		var caule = repository.getReferenceById(id);  
+		var caule = cauleRepository.getReferenceById(id);  
 		return new DadosDetalhamentoCaule(caule);
 	}
 	public Page<DadosListagemCaule> listagem( Pageable paginacao) {
-    var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemCaule::new);
+    var page = cauleRepository.findAllByAtivoTrue(paginacao).map(DadosListagemCaule::new);
     return page;
+	}
+	public Caule validandoDadosDeCaule(DadosCadastroPlanta dados) {
+		return cauleRepository.validandoCauleComClasse(dados.cauleId(),dados.classeId());
+	}
+	public Caule validandoDadosCauleAtualizacao(DadosAtualizacaoPlanta dados) {
+		return cauleRepository.validandoCauleComClasse(dados.cauleId(),dados.classeId());
 	}
 }
 

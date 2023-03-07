@@ -17,15 +17,13 @@ import br.com.magna.botanica.api.domain.caule.DadosListagemCaule;
 @RestController
 @RequestMapping("caules")
 public class CauleController {
-	@Autowired
-	private CauleRepository repository;
 	
 	@Autowired
 	private CauleService cauleService;
 	
 	@GetMapping // METODO DE LISTAGEM
 	public ResponseEntity<Page<DadosListagemCaule>> listar(
-			@PageableDefault(size = 7, sort = { "descricao" }) Pageable paginacao) {
+		@PageableDefault(size = 10, sort = { "descricao" }) Pageable paginacao) {
         return ResponseEntity.ok(cauleService.listagem(paginacao));
 	}
 	@GetMapping("/{id}") // Detalhamento de planta

@@ -14,11 +14,11 @@ public interface ClasseRepository extends JpaRepository<Classe, Long>{
 	@Query("""
 			SELECT  c FROM Classe c
 			WHERE
-			(c.ativo = 1)
+			(c.ativo = true)
 			and
 			(c.id = :classeId)
 			and
-			(c.idFilo = :idFilo)
+			(c.idFilo.id = :idFilo)
 			""")
 	Classe validandoClasseComFilo(Long classeId, Long idFilo);
 

@@ -6,21 +6,21 @@ import jakarta.validation.constraints.NotNull;
 public record DadosAtualizacaoPlanta(
 		@NotNull
 		Long id,
-		@NotBlank		
+	    @NotBlank(message = "{nome.obrigatorio}")
 		String nome,
-		@NotBlank		
+	    @NotBlank(message = "{cor.obrigatorio}")
 		String cor,
-		@NotNull
+		@NotNull(message = "{filo.obrigatorio}")   
 		Long filoId,
-		@NotNull
+		@NotNull(message = "{classe.obrigatorio}") 
 		Long classeId,
 		@NotNull
 		Long ordemId,
-		@NotNull
+	    @NotNull(message = "{raiz.obrigatorio}")  
 		Long raizId,
-		@NotNull
+	    @NotNull(message = "{caule.obrigatorio}")  
 		Long cauleId,
-		@NotNull
+	    @NotNull(message = "{folhagem.obrigatorio}")  
 		Long folhagemId
 ) {
 

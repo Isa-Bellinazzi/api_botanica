@@ -12,25 +12,25 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.magna.botanica.api.domain.folhagem.DadosDetalhamentoFolhagem;
 import br.com.magna.botanica.api.domain.folhagem.DadosListagemFolhagem;
 import br.com.magna.botanica.api.domain.folhagem.FolhagemRepository;
+import br.com.magna.botanica.api.domain.folhagem.FolhagemService;
+import br.com.magna.botanica.api.domain.raiz.DadosListagemRaiz;
+import br.com.magna.botanica.api.domain.raiz.RaizService;
 
 @RestController
 @RequestMapping("folhagens")
-public class FolhagemController {
+public class FolhagemController {	
 	@Autowired
-	private FolhagemRepository repository;
+	private FolhagemService folhagemService;
 
 	@GetMapping // METODO DE LISTAGEM
 	public ResponseEntity<Page<DadosListagemFolhagem>> listar(
-			@PageableDefault(size = 7, sort = { "descricao" }) Pageable paginacao) {
-		var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemFolhagem::new);
-		return ResponseEntity.ok(page);
+		@PageableDefault(size = 7, sort = { "descricao" }) Pageable paginacao) {
+	    return ResponseEntity.ok(folhagemService.listagem(paginacao));
 	}
 
 	@GetMapping("/{id}") // Detalhamento de planta
 	public ResponseEntity detalhar(@PathVariable Long id) {
-		var folhagem = repository.getReferenceById(id);
-		return ResponseEntity.ok(new DadosDetalhamentoFolhagem(folhagem));
-
+		return ResponseEntity.ok(folhagemService.detalhar(id));
 	}
 }
 

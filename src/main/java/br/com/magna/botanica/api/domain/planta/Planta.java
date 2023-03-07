@@ -89,4 +89,6 @@ public class Planta {
 		this.folhagemId = folhagem;
 		this.ativo = true;
 	}
+	
+	
 }

@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.magna.botanica.api.domain.caule.CauleRepository;
+import br.com.magna.botanica.api.domain.caule.CauleService;
+import br.com.magna.botanica.api.domain.caule.DadosListagemCaule;
 import br.com.magna.botanica.api.domain.classe.ClasseRepository;
+import br.com.magna.botanica.api.domain.classe.ClasseService;
 import br.com.magna.botanica.api.domain.classe.DadosDetalhamentoClasse;
 import br.com.magna.botanica.api.domain.classe.DadosListagemClasse;
 
@@ -20,15 +24,17 @@ public class ClasseController {
 	@Autowired
 	private ClasseRepository repository;
 
+	@Autowired
+	private ClasseService classeService;
 
 	@GetMapping // METODO DE LISTAGEM
-	public ResponseEntity<Page<DadosListagemClasse>> listar(@PageableDefault(size = 7, sort = { "descricao" }) Pageable paginacao) {
-        var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemClasse::new);
-        return ResponseEntity.ok(page);
+	public ResponseEntity<Page<DadosListagemClasse>> listar(
+			@PageableDefault(size = 7, sort = { "descricao" }) Pageable paginacao) {
+	    return ResponseEntity.ok(classeService.listagem(paginacao));
 	}
 	@GetMapping("/{id}") // Detalhamento de planta
 	public ResponseEntity detalhar(@PathVariable Long id) {
-		var classe = repository.getReferenceById(id);        
-        return ResponseEntity.ok(new DadosDetalhamentoClasse(classe));
+		return ResponseEntity.ok(classeService.detalhar(id));
 	}
+
 }
