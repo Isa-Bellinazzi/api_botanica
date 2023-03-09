@@ -9,6 +9,7 @@ import br.com.magna.botanica.api.domain.caule.CauleService;
 import br.com.magna.botanica.api.domain.classe.ClasseService;
 import br.com.magna.botanica.api.domain.filo.FiloRepository;
 import br.com.magna.botanica.api.domain.folhagem.FolhagemService;
+import br.com.magna.botanica.api.domain.ordem.Ordem;
 import br.com.magna.botanica.api.domain.ordem.OrdemService;
 import br.com.magna.botanica.api.domain.raiz.RaizService;
 

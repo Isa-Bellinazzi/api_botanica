@@ -1,12 +1,10 @@
 package br.com.magna.botanica.api.domain.classe;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import br.com.magna.botanica.api.domain.caule.DadosDetalhamentoCaule;
-import br.com.magna.botanica.api.domain.caule.DadosListagemCaule;
 import br.com.magna.botanica.api.domain.planta.DadosAtualizacaoPlanta;
 import br.com.magna.botanica.api.domain.planta.DadosCadastroPlanta;
 

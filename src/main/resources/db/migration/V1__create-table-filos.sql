@@ -1,6 +1,6 @@
 create table filos(
 	id bigserial NOT NULL, 
-	descricao varchar(50)  NOT NULL,
+	descricao varchar(50)  NOT NULL UNIQUE,
 	folhas_verdadeiras bool NOT NULL,
     caule_verdadeiro bool  NOT NULL,
     raiz_verdadeiras bool  NOT NULL,

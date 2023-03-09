@@ -8,6 +8,9 @@ public record DadosListagemOrdem(
          ) {
 
 	public DadosListagemOrdem(Ordem ordem) {
-		this(ordem.getId(), ordem.getDescricao(), ordem.getClasseId().getId(), ordem.getAtivo());
+		this(ordem.getId(), 
+			 ordem.getDescricao(), 
+			 ordem.getClasseId().getId(), 
+			 ordem.getAtivo());
 }
 }

@@ -13,12 +13,15 @@ Long id_folhagem,
 Boolean ativo) {
 
 	public DadosListagemPlanta(Planta planta) {
-		this(planta.getId(), planta.getNome(), planta.getCor(), planta.getIdFilo().getId(),
-				 planta.getCauleId().getId(), planta.getOrdemId().getId(),
-				planta.getRaizId().getId(), planta.getCauleId().getId(), planta.getFolhagemId().getId(),planta.getAtivo()
-
+		this(planta.getId(), planta.getNome(), 
+			 planta.getCor(), 
+			 planta.getIdFilo().getId(),
+			 planta.getCauleId().getId(), 
+			 planta.getOrdemId().getId(),
+			 planta.getRaizId().getId(), 
+			 planta.getCauleId().getId(), 
+			 planta.getFolhagemId().getId(),
+			 planta.getAtivo()
 		);
-
 	}
-
 }

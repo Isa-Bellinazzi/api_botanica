@@ -54,40 +54,12 @@ public class ClasseRepositoryTest {
 		String nome = "Bananeira";
 		String cor = "amarela";
 		Filo filo = new Filo(1L, "Angiosperma", true, true, true, true, true, true, true);
-
-		Classe classe = new Classe();
-		classe.setDescricao("EUDICOTILEDONEAS");
-		classe.setIdFilo(filo);
-		classe.setAtivo(true);
-
-		Ordem ordem = new Ordem();
-		ordem.setDescricao("ASTERACEAE");
-		ordem.setClasseId(classe);
-		ordem.setAtivo(true);
-
-		Raiz raiz = new Raiz();
-		raiz.setDescricao("PIVOTANTE");
-		raiz.setClasseId(classe);
-		raiz.setAtivo(true);
-
-		Caule caule = new Caule();
-		caule.setDescricao("CILINDRICO");
-		caule.setClasseId(classe);
-		caule.setAtivo(true);
-		
-		Folhagem folha = new Folhagem();
-		folha.setDescricao("PARALELINERVEA");
-		folha.setClasseId(classe);
-		folha.setAtivo(true);
-
+		Classe classe = new Classe(1L, "EUDICOTILEDONEA",filo,true);
+		Ordem ordem = new Ordem(1L, "ASTERACEAE",classe,true);
+		Raiz raiz = new Raiz(7L, "PIVOTANTE",classe,true);
+		Caule caule = new Caule(7L, "CILINDRICO",classe,true);
+		Folhagem folha = new Folhagem(2L, "RETICULADA",classe,true);
 		Planta planta = new Planta(nome, cor, filo, classe, ordem, raiz, caule, folha);
-
-		filoRepository.save(filo);
-		classeRepository.save(classe);
-		ordemRepository.save(ordem);
-		cauleRepository.save(caule);
-		raizRepository.save(raiz);
-		folhagemRepository.save(folha);
 		plantaRepository.save(planta);
 
 		Optional<Classe> classes = classeRepository.findById(1L);

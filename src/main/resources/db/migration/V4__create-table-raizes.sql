@@ -1,7 +1,7 @@
 create table raizes(
 	id bigserial NOT NULL,
 	descricao varchar(50) not null,
-	classe_id INTEGER NOT NULL,
+	classe_id INTEGER REFERENCES classes(id) NOT NULL,
     ativo bool NOT NULL,
-	primary key(id,classe_id)
+	primary key(id)
 );
