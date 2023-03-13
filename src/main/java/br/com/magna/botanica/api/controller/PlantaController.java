@@ -21,13 +21,12 @@ import br.com.magna.botanica.api.domain.planta.DadosAtualizacaoPlanta;
 import br.com.magna.botanica.api.domain.planta.DadosCadastroPlanta;
 import br.com.magna.botanica.api.domain.planta.DadosDetalhamentoPlanta;
 import br.com.magna.botanica.api.domain.planta.DadosListagemPlanta;
-import br.com.magna.botanica.api.domain.planta.Planta;
 import br.com.magna.botanica.api.domain.planta.PlantaRepository;
 import br.com.magna.botanica.api.domain.planta.PlantaService;
 
 @RestController
 @RequestMapping("plantas")
-public class PlantaController {
+ class PlantaController {
 	@Autowired
 	private PlantaRepository repository;
 
@@ -36,33 +35,33 @@ public class PlantaController {
 
 	@PostMapping
 	@Transactional // METODO DE CADASTRO	
-	 public ResponseEntity cadastrar(@RequestBody @Validated DadosCadastroPlanta
+	public  ResponseEntity<DadosDetalhamentoPlanta> cadastrar(@RequestBody @Validated DadosCadastroPlanta
 	 dados, UriComponentsBuilder uriBuilder) { var planta =
 	 plantaService.cadastrar(dados); var uri =
 	 uriBuilder.path("/planta/{id}").buildAndExpand(planta.getId()).toUri();
 	 return ResponseEntity.created(uri).body(plantaService.detalhar(planta.getId())); }
 
-	@GetMapping // METODO DE LISTAGEM
-	public ResponseEntity<Page<DadosListagemPlanta>> listar(
+	@GetMapping(value = "/listagem") // METODO DE LISTAGEM
+	 ResponseEntity<Page<DadosListagemPlanta>> listar(
 			@PageableDefault(size = 7, sort = { "nome" }) Pageable paginacao) {
 		return ResponseEntity.ok(plantaService.listagem(paginacao));
 	}
 
-	@PutMapping
+	@PutMapping(value = "/atualizar")
 	@Transactional // METODO DE ATUALIZAÇÃO
-	public ResponseEntity atualizar(@RequestBody @Validated DadosAtualizacaoPlanta dados) {
+	public ResponseEntity<DadosDetalhamentoPlanta> atualizar(@RequestBody @Validated DadosAtualizacaoPlanta dados) {
 		return ResponseEntity.ok(plantaService.atualizar(dados));
 	}
 	
 	@DeleteMapping("/{id}")
 	@Transactional // EXCLUSAO LOGICA
-	public ResponseEntity excluir(@PathVariable Long id) {
+	public ResponseEntity<Long> excluir(@PathVariable Long id) {
 		plantaService.excluir(id);
 		return ResponseEntity.noContent().build();
 	}
 
 	@GetMapping("/{id}") // Detalhamento de planta
-	public ResponseEntity detalhar(@PathVariable Long id) {
+	public ResponseEntity<DadosDetalhamentoPlanta> detalhar(@PathVariable Long id) {
 		return ResponseEntity.ok(plantaService.detalhar(id));
 	}
 }

@@ -29,4 +29,14 @@ public class Folhagem {
 	@JoinColumn(name = "classe_id")
 	private Classe classeId;
 	private Boolean ativo;
+
+	public Folhagem(Long id) {
+		this.id = id;
+	}
+
+	public Folhagem(String descricao, Classe classeId, Boolean ativo) {
+		this.descricao = descricao;
+		this.classeId = classeId;
+		this.ativo = ativo;
+	}
 }

@@ -10,13 +10,8 @@ public class RaizService {
 	@Autowired
 	private RaizRepository raizRepository;
 	
-	public DadosDetalhamentoRaiz detalhar(Long id) {
-		var raiz = raizRepository.getReferenceById(id);  
-		return new DadosDetalhamentoRaiz(raiz);
-	}
 	public Page<DadosListagemRaiz> listagem( Pageable paginacao) {
-    var page = raizRepository.findAllByAtivoTrue(paginacao).map(DadosListagemRaiz::new);
-    return page;
+    return raizRepository.findAllByAtivoTrue(paginacao).map(DadosListagemRaiz::new);
 	}
 	
 	public Raiz validandoDadosDeRaiz(DadosCadastroPlanta dados) {

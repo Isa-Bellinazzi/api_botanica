@@ -1,7 +1,5 @@
 package br.com.magna.botanica.api.domain.planta;
 
-import br.com.magna.botanica.api.domain.ordem.Ordem;
-
 public record DadosDetalhamentoPlanta(
 		Long id,
 		String nome,

@@ -1,4 +1,5 @@
 package br.com.magna.botanica.api.domain.classe;
+
 import br.com.magna.botanica.api.domain.filo.Filo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,4 +29,15 @@ public class Classe {
 	@JoinColumn(name = "id_filo")
 	private Filo idFilo;
 	private Boolean ativo;
+
+	public Classe(Long id) {
+		this.id = id;
+	}
+
+	public Classe(String descricao, Filo idFilo, Boolean ativo) {
+		this.descricao = descricao;
+		this.idFilo = idFilo;
+		this.ativo = ativo;
+	}
+
 }

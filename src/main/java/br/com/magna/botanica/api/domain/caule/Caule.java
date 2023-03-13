@@ -28,4 +28,14 @@ public class Caule {
 	@JoinColumn(name = "classe_id")
 	private Classe classeId;
 	private Boolean ativo;
+	
+	public Caule(Long id) {
+		this.id = id;
+	}
+	
+	  public Caule(String descricao, Classe classeId, Boolean ativo) {
+	        this.descricao = descricao;
+	        this.classeId = classeId;
+	        this.ativo = ativo;
+	    }
 }

@@ -14,13 +14,8 @@ public class ClasseService {
 	@Autowired
 	private ClasseRepository classeRepository;
 	
-	public DadosDetalhamentoClasse detalhar(Long id) {
-		var classe = classeRepository.getReferenceById(id);  
-		return new DadosDetalhamentoClasse(classe);
-	}
 	public Page<DadosListagemClasse> listagem( Pageable paginacao) {
-	var page = classeRepository.findAllByAtivoTrue(paginacao).map(DadosListagemClasse::new);
-	return page;
+	return classeRepository.findAllByAtivoTrue(paginacao).map(DadosListagemClasse::new);
 	}
 	
 	public Classe valiadandoDadosDeClasse(DadosCadastroPlanta dados) {

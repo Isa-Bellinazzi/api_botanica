@@ -11,13 +11,8 @@ public class FolhagemService {
 	@Autowired
 	private FolhagemRepository folhaRepository;
 	
-	public DadosDetalhamentoFolhagem detalhar(Long id) {
-		var folha = folhaRepository.getReferenceById(id);  
-		return new DadosDetalhamentoFolhagem(folha);
-	}
 	public Page<DadosListagemFolhagem> listagem( Pageable paginacao) {
-    var page = folhaRepository.findAllByAtivoTrue(paginacao).map(DadosListagemFolhagem::new);
-    return page;
+    return folhaRepository.findAllByAtivoTrue(paginacao).map(DadosListagemFolhagem::new);
 	}
 	
 	public Folhagem validandoDadosDeFolhagem(DadosCadastroPlanta dados) {

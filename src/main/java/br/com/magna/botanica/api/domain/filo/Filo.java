@@ -30,4 +30,20 @@ public  class Filo{
 	private Boolean flores;
 	private Boolean ativo;
 	private Boolean sementes;
+	
+    public Filo(Long id) {
+        this.id = id;
+    }
+
+    public Filo(DadosDetalhamentoFilo dados) {
+        this.descricao = dados.descricao();
+        this.folhasVerdadeiras = dados.folhasVerdadeiras();
+        this.cauleVerdadeiro = dados.cauleVerdadeiro();
+        this.raizVerdadeiras = dados.raizVerdadeiras();
+        this.frutos = dados.frutos();
+        this.flores = dados.flores();
+        this.ativo = dados.ativo();
+        this.sementes = dados.sementes();
+    }
 }
+

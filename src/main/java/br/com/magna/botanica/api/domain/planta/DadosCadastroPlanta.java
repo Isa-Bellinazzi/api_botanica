@@ -12,6 +12,7 @@ public record DadosCadastroPlanta(
 		Long filoId,
 		@NotNull(message = "{classe.obrigatorio}") 
 	    Long classeId,
+	    @NotNull(message = "{ordem.obrigatorio}")
 	    Long ordemId,
 	    @NotNull(message = "{raiz.obrigatorio}")  
 	    Long raizId,

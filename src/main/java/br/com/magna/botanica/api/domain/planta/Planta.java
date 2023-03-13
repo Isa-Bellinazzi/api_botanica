@@ -1,6 +1,9 @@
 package br.com.magna.botanica.api.domain.planta;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.com.magna.botanica.api.domain.caule.Caule;
 import br.com.magna.botanica.api.domain.classe.Classe;
 import br.com.magna.botanica.api.domain.filo.Filo;
@@ -25,68 +28,77 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Planta {
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+ public class Planta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
 	private Long id;
+    @JsonProperty("nome")
 	private String nome;
+    @JsonProperty("cor")
 	private String cor;
 	@OneToOne(targetEntity = Filo.class)
 	@JoinColumn(name = "filo_id")
+    @JsonProperty("filo")
 	private Filo idFilo;
 	@OneToOne(targetEntity = Classe.class)
 	@JoinColumn(name = "classe_id")
+    @JsonProperty("classe")
 	private Classe classeId;
 	@OneToOne(targetEntity = Ordem.class)
 	@JoinColumn(name = "ordem_id")
+    @JsonProperty("ordem")
 	private Ordem ordemId;
 	@OneToOne(targetEntity = Raiz.class)
 	@JoinColumn(name = "raiz_id")
+    @JsonProperty("raiz")
 	private Raiz raizId;
 	@OneToOne(targetEntity = Caule.class)
 	@JoinColumn(name = "caule_id")
+    @JsonProperty("caule")
 	private Caule cauleId;
 	@OneToOne(targetEntity = Folhagem.class)
 	@JoinColumn(name = "folhagem_id")
+    @JsonProperty("folhagem")
 	private Folhagem folhagemId;
+    @JsonProperty("ativo")
 	private Boolean ativo;
 
-	public void excluir() {
+	 void excluir() {
 		this.ativo = false;
 	}
 
-	public Boolean getAtivo() {
+	 Boolean getAtivo() {
 	 	return ativo;
 	}
 
-	public Planta(String nome, String cor, Filo filo, Classe classe, Ordem ordem, Raiz raiz, Caule caule,
-			Folhagem folhagem) {
-		this.nome = nome;
-		this.cor = cor;
-		this.idFilo = filo;
-		this.classeId = classe;
-		this.ordemId = ordem;
-		this.raizId = raiz;
-		this.cauleId = caule;
-		this.folhagemId = folhagem;
-		this.ativo = true;
+
+	 Planta(DadosCadastroPlanta dados) {
+			this.nome = dados.nome();
+			this.cor = dados.cor();
+			this.idFilo = new Filo(dados.filoId());
+			this.classeId = new Classe(dados.classeId());
+			this.ordemId = new Ordem(dados.ordemId());
+			this.raizId = new Raiz(dados.raizId());
+			this.cauleId = new Caule(dados.cauleId());
+			this.folhagemId = new Folhagem(dados.folhagemId());
+			this.ativo = true;
 	}
 
 
-	public void atualizarInformacoes(Long id, String nome, String cor, Filo filo, Classe classe, Ordem ordem, Raiz raiz, Caule caule,
-			Folhagem folhagem) {
-		this.id = id;
-		this.nome = nome;
-		this.cor = cor;
-		this.idFilo = filo;
-		this.classeId = classe;
-		this.ordemId = ordem;
-		this.raizId = raiz;
-		this.cauleId = caule;
-		this.folhagemId = folhagem;
-		this.ativo = true;
-	}
+	 public void atualizarInformacoes(DadosPlanta dadosPlanta) {
+		    this.nome = dadosPlanta.nome();
+		    this.cor = dadosPlanta.cor();
+		    this.idFilo = dadosPlanta.filo();
+		    this.classeId = dadosPlanta.classe();
+		    this.ordemId = dadosPlanta.ordem();
+		    this.raizId = dadosPlanta.raiz();
+		    this.cauleId = dadosPlanta.caule();
+		    this.folhagemId = dadosPlanta.folhagem();
+		}
+
 	
 	
 }

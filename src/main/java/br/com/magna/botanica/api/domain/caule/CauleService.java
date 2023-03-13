@@ -13,13 +13,9 @@ public class CauleService {
 
 	@Autowired
 	private CauleRepository cauleRepository;
-	public DadosDetalhamentoCaule detalhar(Long id) {
-		var caule = cauleRepository.getReferenceById(id);  
-		return new DadosDetalhamentoCaule(caule);
-	}
+
 	public Page<DadosListagemCaule> listagem( Pageable paginacao) {
-    var page = cauleRepository.findAllByAtivoTrue(paginacao).map(DadosListagemCaule::new);
-    return page;
+    return cauleRepository.findAllByAtivoTrue(paginacao).map(DadosListagemCaule::new);
 	}
 	public Caule validandoDadosDeCaule(DadosCadastroPlanta dados) {
 		return cauleRepository.validandoCauleComClasse(dados.cauleId(),dados.classeId());

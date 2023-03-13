@@ -29,4 +29,14 @@ public class Ordem {
 	@JoinColumn(name = "classe_id")
 	private Classe classeId;
 	private Boolean ativo;	
+	
+	public Ordem(Long id) {
+		this.id = id;
+	}
+	
+	  public Ordem(String descricao, Classe classeId, Boolean ativo) {
+	        this.descricao = descricao;
+	        this.classeId = classeId;
+	        this.ativo = ativo;
+	    }
 }

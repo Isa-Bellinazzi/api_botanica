@@ -9,13 +9,8 @@ import org.springframework.stereotype.Service;
 public class FiloService {
 	@Autowired
 	private FiloRepository filoRepository;
-	
-	public DadosDetalhamentoFilo detalhar(Long id) {
-		var filo = filoRepository.getReferenceById(id);  
-		return new DadosDetalhamentoFilo(filo);
-	}
+
 	public Page<DadosListagemFilo> listagem( Pageable paginacao) {
-	var page = filoRepository.findAllByAtivoTrue(paginacao).map(DadosListagemFilo::new);
-	return page;
+	return filoRepository.findAllByAtivoTrue(paginacao).map(DadosListagemFilo::new);
 	}
 }
