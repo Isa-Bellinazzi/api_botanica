@@ -71,3 +71,11 @@ INSERT INTO folhagens (descricao,classe_id,ativo) VALUES
 	 ('SIMPLES',8,true),
 	 (' NERVURAS SECUNDARIAS',10,true),
 	 ('COMPLEXAS',11,true);
+INSERT INTO plantas (nome,cor,filo_id,classe_id,ordem_id,raiz_id,caule_id,folhagem_id,ativo) VALUES
+     ('SAMAMBAIA','VERDE ESCURO',3,6,17,8,8,8,true),
+	 ('GIRASSOL','AMARELA',1,1,1,2,5,5,true),
+	 ('BANANEIRA','AMARELA',1,2,16,1,4,4,true),
+	 ('DASMAQUEIRO','VERMELHA',1,1,3,2,5,5,true),
+	 ('PLANTA DETALHAR','VERDE',1,1,1,7,7,2,true),
+	 ('PLANTA EXCLUIR','VERDE',1,1,1,7,7,2,true),
+	 ('PLANTA ATUALIZAR','CASTANHO',4,10,19,5,4,10,true);

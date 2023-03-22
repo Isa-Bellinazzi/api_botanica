@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.magna.botanica.api.domain.folhagem.DadosListagemFolhagem;
-import br.com.magna.botanica.api.domain.folhagem.FolhagemService;
+import br.com.magna.botanica.api.record.DadosListagemFolhagem;
+import br.com.magna.botanica.api.service.FolhagemService;
 
 @RestController
 @RequestMapping("folhagens")

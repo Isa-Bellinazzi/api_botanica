@@ -9,8 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.magna.botanica.api.domain.classe.ClasseService;
-import br.com.magna.botanica.api.domain.classe.DadosListagemClasse;
+
+import br.com.magna.botanica.api.record.DadosListagemClasse;
+import br.com.magna.botanica.api.service.ClasseService;
 
 @RestController
 @RequestMapping("classes")

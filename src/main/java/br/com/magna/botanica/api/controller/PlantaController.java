@@ -17,33 +17,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.magna.botanica.api.domain.planta.DadosAtualizacaoPlanta;
-import br.com.magna.botanica.api.domain.planta.DadosCadastroPlanta;
-import br.com.magna.botanica.api.domain.planta.DadosDetalhamentoPlanta;
-import br.com.magna.botanica.api.domain.planta.DadosListagemPlanta;
-import br.com.magna.botanica.api.domain.planta.PlantaRepository;
-import br.com.magna.botanica.api.domain.planta.PlantaService;
+import br.com.magna.botanica.api.record.DadosAtualizacaoPlanta;
+import br.com.magna.botanica.api.record.DadosCadastroPlanta;
+import br.com.magna.botanica.api.record.DadosDetalhamentoPlanta;
+import br.com.magna.botanica.api.record.DadosListagemPlanta;
+import br.com.magna.botanica.api.service.PlantaService;
 
 @RestController
 @RequestMapping("plantas")
- class PlantaController {
-	@Autowired
-	private PlantaRepository repository;
+class PlantaController {
 
 	@Autowired
 	private PlantaService plantaService;
 
-	@PostMapping
-	@Transactional // METODO DE CADASTRO	
-	public  ResponseEntity<DadosDetalhamentoPlanta> cadastrar(@RequestBody @Validated DadosCadastroPlanta
-	 dados, UriComponentsBuilder uriBuilder) { var planta =
-	 plantaService.cadastrar(dados); var uri =
-	 uriBuilder.path("/planta/{id}").buildAndExpand(planta.getId()).toUri();
-	 return ResponseEntity.created(uri).body(plantaService.detalhar(planta.getId())); }
+	@PostMapping(value = "/cadastrar")
+	@Transactional // METODO DE CADASTRO
+	public ResponseEntity<DadosDetalhamentoPlanta> cadastrar(@RequestBody @Validated DadosCadastroPlanta dados,
+			UriComponentsBuilder uriBuilder) {
+		var planta = plantaService.cadastrar(dados);
+		var uri = uriBuilder.path("/planta/{id}").buildAndExpand(planta.getId()).toUri();
+		return ResponseEntity.created(uri).body(plantaService.detalhar(planta.getId()));
+	}
 
 	@GetMapping(value = "/listagem") // METODO DE LISTAGEM
-	 ResponseEntity<Page<DadosListagemPlanta>> listar(
-			@PageableDefault(size = 7, sort = { "nome" }) Pageable paginacao) {
+	ResponseEntity<Page<DadosListagemPlanta>> listar(@PageableDefault(size = 7, sort = { "nome" }) Pageable paginacao) {
 		return ResponseEntity.ok(plantaService.listagem(paginacao));
 	}
 
@@ -52,15 +49,15 @@ import br.com.magna.botanica.api.domain.planta.PlantaService;
 	public ResponseEntity<DadosDetalhamentoPlanta> atualizar(@RequestBody @Validated DadosAtualizacaoPlanta dados) {
 		return ResponseEntity.ok(plantaService.atualizar(dados));
 	}
-	
-	@DeleteMapping("/{id}")
+
+	@DeleteMapping("/excluir/{id}")
 	@Transactional // EXCLUSAO LOGICA
 	public ResponseEntity<Long> excluir(@PathVariable Long id) {
 		plantaService.excluir(id);
 		return ResponseEntity.noContent().build();
 	}
 
-	@GetMapping("/{id}") // Detalhamento de planta
+	@GetMapping("detalhar/{id}") // Detalhamento de planta
 	public ResponseEntity<DadosDetalhamentoPlanta> detalhar(@PathVariable Long id) {
 		return ResponseEntity.ok(plantaService.detalhar(id));
 	}

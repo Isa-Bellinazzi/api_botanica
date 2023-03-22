@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.magna.botanica.api.domain.raiz.DadosListagemRaiz;
-import br.com.magna.botanica.api.domain.raiz.RaizService;
+import br.com.magna.botanica.api.record.DadosListagemRaiz;
+import br.com.magna.botanica.api.service.RaizService;
 
 @RestController
 @RequestMapping("raizes")
